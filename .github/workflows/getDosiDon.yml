@@ -1,0 +1,15 @@
+name: trigger cron task to crul DON
+
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: '0 4 * * *'
+
+jobs:
+  YC:
+    runs-on: [ self-hosted, cokethereum-test ]
+    steps:
+    - name: YC get DON request
+      run: curl -X POST -H "authority:citizen.dosi.world" -H "accept:application/json, text/plain, */*" -H "accept-encoding:gzip, deflate, br" -H "cookie:DOSI_SES=$YC_SES" -H "referer:https://citizen.dosi.world/bonus" -H "sec-fetch-dest:empty" -H "sec-fetch-mode:cors" -H "sec-fetch-site:same-origin" https://citizen.dosi.world/api/citizen/v1/events/check-in
+      env:
+          YC_SES: ${{ secrets.YC_CITIZEN_SES }}
