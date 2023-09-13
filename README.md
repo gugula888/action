@@ -1,2 +1,2 @@
 # action
-Daily get DON.
+Daily get DON
